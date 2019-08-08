@@ -23,7 +23,7 @@ namespace Library
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.min-lumen.css",
+                      "~/Content/bootstrap.css",
                       "~/Content/site.css"));
         }
     }

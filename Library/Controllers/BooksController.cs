@@ -10,14 +10,10 @@ namespace Library.Controllers
     public class BooksController : Controller
     {
         // GET: Books
-        public ActionResult Index(int? pageIndex, string sortBy)
+        public ActionResult Index()
         {
-            if (!pageIndex.HasValue)
-                pageIndex = 1;
-            if (String.IsNullOrWhiteSpace(sortBy))
-                sortBy = "Name";
-
-            return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
+            var books = GetBooks();
+            return View(books);
         }
         public ActionResult Random()
         {
@@ -29,6 +25,14 @@ namespace Library.Controllers
         public ActionResult Edit(int id)
         {
             return Content("id=" + id);
+        }
+        private IEnumerable<Book> GetBooks()
+        {
+            return new List<Book>
+            {
+               new Book {Id = 1, Name = "Karn"},
+               new Book {Id = 2, Name = "Lalla"}
+            };
         }
     }
 }
