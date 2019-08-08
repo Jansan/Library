@@ -22,3 +22,6 @@ select,
 textarea {
     max-width: 280px;
 }
+.nav-item a {
+    color:#cc2020 !important;
+}
