@@ -22,16 +22,23 @@ namespace Library.Controllers
         }
 
         // GET: Books
-        public ActionResult Index()
+        public ViewResult Index()
         {
             var books = _context.Books.Include(b => b.Genre).ToList();
             return View(books);
         }
+        //GET: Books/Details
+        public ActionResult Details(int id)
+        {
+            var book = _context.Books.Include(b => b.Genre).SingleOrDefault(b => b.Id == id);
+
+            if (book == null)
+                return HttpNotFound();
+
+            return View(book);
+        }
         public ActionResult Random()
         {
-           
-
-
             return View();
         }
         public ActionResult Edit(int id)
