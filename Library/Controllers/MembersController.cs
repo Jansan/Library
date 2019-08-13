@@ -28,7 +28,7 @@ namespace Library.Controllers
         }
         public ActionResult Details(int id)
         {
-            var member = _context.Members.Include(m => m.MembershipType).ToList();
+            var member = _context.Members.Include(m => m.MembershipType).SingleOrDefault(m => m.Id == id);
 
             if (member == null)
                 return HttpNotFound();
