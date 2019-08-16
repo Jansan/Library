@@ -17,6 +17,7 @@ namespace Library.Models
 
         public MembershipType MembershipType { get; set; }
         public byte MembershipTypeId { get; set; }
+        [Display(Name ="Date of Birth")]
         public DateTime? BirthDate { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using Library.ViewModels;
 
 namespace Library.Controllers
 {
@@ -26,6 +27,7 @@ namespace Library.Controllers
             var members = _context.Members;
             return View(members);
         }
+        //GET: Members/Details
         public ActionResult Details(int id)
         {
             var member = _context.Members.Include(m => m.MembershipType).SingleOrDefault(m => m.Id == id);
@@ -34,13 +36,17 @@ namespace Library.Controllers
                 return HttpNotFound();
             return View(member);
         }
-        private IEnumerable<Member> GetMembers()
+        // Add New Book
+        public ActionResult New()
         {
-            return new List<Member>
+            var membershipTypes = _context.MembershipTypes.ToList();
+
+            var viewModel = new NewMemberViewModel
             {
-                new Member { Id = 1, Name ="Jansan"},
-                new Member {Id = 2, Name ="Vino"}
+                MembershipTypes = membershipTypes
             };
+            return View(viewModel);
         }
+        
     }
 }
