@@ -79,7 +79,7 @@ namespace Library.Controllers
             var viewModel = new MemberFormViewModel
             {
                 Member = member,
-                MembershipType = _context.MembershipTypes.ToList()
+                MembershipTypes = _context.MembershipTypes.ToList()
             };
             return View("MemberForm", viewModel);
         }
