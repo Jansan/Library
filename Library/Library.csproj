@@ -225,6 +225,7 @@
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\MemberFormViewModel.cs" />
     <Compile Include="ViewModels\RandomBookViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -291,7 +292,7 @@
     <Content Include="Views\Members\Index.cshtml" />
     <Content Include="Views\Members\Details.cshtml" />
     <Content Include="Views\Books\Details.cshtml" />
-    <Content Include="Views\Members\New.cshtml" />
+    <Content Include="Views\Members\MemberForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

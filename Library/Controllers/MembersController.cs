@@ -36,16 +36,52 @@ namespace Library.Controllers
                 return HttpNotFound();
             return View(member);
         }
-        // Add New Book
+        // Add New Member
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
 
-            var viewModel = new NewMemberViewModel
+            var viewModel = new MemberFormViewModel
             {
                 MembershipTypes = membershipTypes
             };
-            return View(viewModel);
+            return View("MemberForm",viewModel);
+        }
+        // Create Member
+        [HttpPost]
+        public ActionResult Save(Member member)
+        {
+            if (member.Id == 0)
+                _context.Members.Add(member);
+            else
+            {
+                var memberInDb = _context.Members.Single(m => m.Id == member.Id);
+
+                memberInDb.Name = member.Name;
+                memberInDb.BirthDate = member.BirthDate;
+                memberInDb.MembershipTypeId = member.MembershipTypeId;
+                memberInDb.IsSubscribedToNewsletter = member.IsSubscribedToNewsletter;
+
+            }
+           
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Members");
+          
+        }
+        // Edit Member
+        public ActionResult Edit(int id)
+        {
+            var member = _context.Members.SingleOrDefault(m => m.Id == id);
+
+            if (member == null)
+                return HttpNotFound();
+
+            var viewModel = new MemberFormViewModel
+            {
+                Member = member,
+                MembershipType = _context.MembershipTypes.ToList()
+            };
+            return View("MemberForm", viewModel);
         }
         
     }

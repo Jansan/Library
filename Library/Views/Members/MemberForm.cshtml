@@ -1,4 +1,4 @@
-﻿@model Library.ViewModels.NewMemberViewModel
+﻿@model Library.ViewModels.MemberFormViewModel
 @{
     ViewBag.Title = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,7 +6,7 @@
 
 <h2>New Book</h2>
 
-@using  (Html.BeginForm("Create", "Members"))
+@using  (Html.BeginForm("Save", "Members"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Member.Name)
@@ -16,7 +16,7 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Member.BirthDate)
-        @Html.TextBoxFor(m => m.Member.BirthDate, new { @class = "form-control"})
+        @Html.TextBoxFor(m => m.Member.BirthDate,"{0:d MMM yyyy}", new { @class = "form-control"})
     </div>
     <div class="checkbox">
         <label>
@@ -28,4 +28,6 @@
         @Html.LabelFor(m => m.Member.MembershipTypeId)
         @Html.DropDownListFor(m => m.Member.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select MembershipType", new { @class = "form-control"})
     </div>
+    @Html.HiddenFor(m => m.Member.Id)
+    <button type="submit" class="btn btn-primary">Save</button>
 }
